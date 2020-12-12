@@ -7,9 +7,9 @@ terraform {
   }
 }
 
-provider "azurerm" {
-  features {}
-}
+#provider "azurerm" {
+ # features {}
+#}
 
 resource "azurerm_resource_group" "devops" {
   name     = "devops_2020"
