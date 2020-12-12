@@ -76,3 +76,5 @@ resource "azurerm_linux_virtual_machine" "devops" {
     version   = "latest"
   }
 }
+
+
