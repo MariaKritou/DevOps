@@ -7,9 +7,9 @@ terraform {
   }
 }
 
-#provider "azurerm" {
- # features {}
-#}
+provider "azurerm" {
+  features {}
+}
 
 resource "azurerm_resource_group" "devops" {
   name     = "devops_2020"
@@ -52,10 +52,10 @@ resource "azurerm_linux_virtual_machine" "devops" {
     azurerm_network_interface.devops.id,
   ]
 
-  #admin_ssh_key {
-  #  username   = "adminuser"
-  #  public_key = file("~/.ssh/id_rsa.pub")
-  #}
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = file("~/.ssh/id_rsa.pub")
+  }
 
   os_disk {
     caching              = "ReadWrite"
