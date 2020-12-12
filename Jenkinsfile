@@ -89,8 +89,6 @@ stage('Set Terraform path') {
     
     stage('Provision infrastructure') {
         steps {
-          dir('environments/dev')
-          {
               withCredentials([azureServicePrincipal('1fba7590-0c5e-4cd4-a8a9-733e30590c66')]) {
                   script{
                     sh  'terraform init'
@@ -104,7 +102,6 @@ stage('Set Terraform path') {
 
         }
         
-    }
 }
 }
 
