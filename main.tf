@@ -63,12 +63,16 @@ resource "azurerm_linux_virtual_machine" "devops" {
   ]
   computer_name  = "virtual-machine"
   admin_username = "adminuser"
-  disable_password_authentication = true
+
   
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+   os_profile_linux_config {
+        disable_password_authentication = true
+
+        ssh_keys = [{
+            path     = "/home/setup/.ssh/authorized_keys"
+            key_data = "${chomp(tls_private_key.example_ssh.public_key_openssh)}"
+        }]
+    }
 
   os_disk {
     caching              = "ReadWrite"
