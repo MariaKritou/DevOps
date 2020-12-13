@@ -59,11 +59,11 @@ resource "azurerm_linux_virtual_machine" "devops" {
   resource_group_name = azurerm_resource_group.devops.name
   location            = azurerm_resource_group.devops.location
   size                = "Standard_F2"
-  admin_username      = "adminuser"
   network_interface_ids = [
     azurerm_network_interface.devops.id,
   ]
   computer_name  = "virtual-machine"
+  admin_username = "adminuser"
   disable_password_authentication = true
   
   admin_ssh_key {
