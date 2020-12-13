@@ -8,6 +8,12 @@ terraform {
 }
 
 provider "azurerm" {
+  
+  subscription_id = "fdc197e5-e589-473f-b7b2-12bd7cd2842a"
+  client_id       = "bf0fe59d-8fa1-4d6d-86bc-9a2af68575ff"
+  client_secret   = "h4OjIY.xs6EUTs-.zuLVNA-3O-JzoXm-yF"
+  tenant_id       = "b1732512-60e5-48fb-92e8-8d6902ac1349"
+  
   features {}
 }
 
@@ -42,26 +48,26 @@ resource "azurerm_network_interface" "devops" {
   }
 }
 
+resource "tls_private_key" "example_ssh" {
+  algorithm = "RSA"
+  rsa_bits = 4096
+}
+output "tls_private_key" { value = tls_private_key.example_ssh.private_key_pem }
 
 resource "azurerm_linux_virtual_machine" "devops" {
-  name                = "virtual-machine"
-  resource_group_name = azurerm_resource_group.devops.name
-  location            = azurerm_resource_group.devops.location
-  size                = "Standard_F2"
-  admin_username      = "adminuser"
-  network_interface_ids = [
-    azurerm_network_interface.devops.id,
-  ]
-
- admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
-
+  name                  = "virtual-machine"
+  resource_group_name   = azurerm_resource_group.devops.name
+  location              = azurerm_resource_group.devops.location
+  network_interface_ids = [azurerm_network_interface.devops.id]
+  size                  = "Standard_DS1_v2"
+  
+  
+  
   os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
+        name              = "myOsDisk"
+        caching           = "ReadWrite"
+        storage_account_type = "Premium_LRS"
+    }
 
   source_image_reference {
     publisher = "Canonical"
@@ -69,4 +75,25 @@ resource "azurerm_linux_virtual_machine" "devops" {
     sku       = "16.04-LTS"
     version   = "latest"
   }
+  
+  
+  computer_name  = "virtual-machine"
+  admin_username = "adminuser"
+  disable_password_authentication = true
+  
+  admin_ssh_key {
+    username   = "adminuser"
+    public_key = tls_private_key.example_ssh.private_key_pem
+  }
+  
+  #boot_diagnostics {
+   #     storage_account_uri = azurerm_storage_account.mystorageaccount.primary_blob_endpoint
+    #}
+
+    #tags = {
+    #    environment = "Terraform Demo"
+   # }
+  
 }
+
+
