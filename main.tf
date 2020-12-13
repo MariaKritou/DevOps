@@ -67,7 +67,7 @@ resource "azurerm_linux_virtual_machine" "devops" {
   
   admin_ssh_key {
     username   = "adminuser"
-    public_key = tls_private_key.example_ssh.private_key_pem
+    public_key = file("~/.ssh/id_rsa.pub")
   }
 
   os_disk {
