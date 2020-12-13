@@ -63,6 +63,7 @@ resource "azurerm_linux_virtual_machine" "devops" {
   network_interface_ids = [
     azurerm_network_interface.devops.id,
   ]
+  computer_name  = "virtual-machine"
   disable_password_authentication = true
   
   admin_ssh_key {
