@@ -89,7 +89,7 @@ stage('Set Terraform path') {
     
     stage('Provision infrastructure') {
         steps {
-              withCredentials([azureServicePrincipal('1fba7590-0c5e-4cd4-a8a9-733e30590c66')]) {
+              withCredentials([azureServicePrincipal('azrCredentials')]) {
                   script{
                     sh  'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
                     sh  'terraform init'
