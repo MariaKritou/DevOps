@@ -11,6 +11,10 @@ pipeline {
     }
 
     agent any
+    
+    triggers {
+        pollSCM '* * * * *'
+    }
 
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
@@ -91,10 +95,10 @@ stage('Set Terraform path') {
         steps {
               withCredentials([azureServicePrincipal('1fba7590-0c5e-4cd4-a8a9-733e30590c66')]) {
                   script{
-                    sh  'terraform init'
-                    sh  'terraform apply'
                     sh  'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-
+                    sh  'terraform init'
+                    sh  'terraform apply -input=false -auto-approve'
+                      
                     }
               }
                 // sh ‘terraform destroy -auto-approve’
