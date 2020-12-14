@@ -62,7 +62,7 @@ resource "azurerm_virtual_machine" "devops" {
     name = "OsDisk"
     caching       = "ReadWrite"
     create_option = "FromImage"
-    manage_disk_type = "Premium_LRS"
+    managed_disk_type = "Premium_LRS"
   }
   
   storage_image_reference {
