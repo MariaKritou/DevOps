@@ -48,10 +48,6 @@ resource "azurerm_network_interface" "devops" {
   }
 }
 
-resource "tls_private_key" "example_ssh" {
-  algorithm = "RSA"
-  rsa_bits = 4096
-}
 
 resource "azurerm_linux_virtual_machine" "devops" {
   name                = "virtual-machine"
@@ -61,14 +57,16 @@ resource "azurerm_linux_virtual_machine" "devops" {
   network_interface_ids = [
     azurerm_network_interface.devops.id,
   ]
-  computer_name  = "virtual-machine"
-  admin_username = "adminuser"
-  disable_password_authentication = true
   
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = tls_private_key.example_ssh.public_key_pem
-  }
+ os_profile {
+   computer_name  = "virtual-machine"
+   admin_username = "var.admin_username"
+   admin_password = "var.admin_password"
+   }
+  
+  os_profile_linux_config {
+    disable_password_authentication = false
+    }
   
   os_disk {
     caching              = "ReadWrite"
@@ -83,4 +81,12 @@ resource "azurerm_linux_virtual_machine" "devops" {
   }
 }
 
+
+variable "admin_username" {
+  default = "Usern@me"
+  }
+
+variable "admin_password" {
+  default = "Passw0rd"
+  }
 
