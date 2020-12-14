@@ -53,14 +53,16 @@ resource "azurerm_virtual_machine" "devops" {
   name                = "virtual-machine"
   resource_group_name = azurerm_resource_group.devops.name
   location            = azurerm_resource_group.devops.location
-  size                = "Standard_F2"
+  vm_size             = "Standard_F2"
   network_interface_ids = [
     azurerm_network_interface.devops.id,
   ]
   
   storage_os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
+    name = "OsDisk"
+    caching       = "ReadWrite"
+    create_option = "FromImage"
+    manage_disk_type = "Premium_LRS"
   }
   
   storage_image_reference {
