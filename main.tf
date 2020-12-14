@@ -90,6 +90,6 @@ variable "admin_username" {
   }
 
 variable "admin_password" {
-  default = "P@ssw0rD"
+  default = "G0odD4y#"
   }
 
