@@ -86,10 +86,10 @@ resource "azurerm_virtual_machine" "devops" {
 
 
 variable "admin_username" {
-  default = "Usern@me"
+  default = "devOpslala"
   }
 
 variable "admin_password" {
-  default = "G0odD4y#"
+  default = "G0odD4y#fheoh89029#iohASWE"
   }
 
