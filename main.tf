@@ -53,7 +53,7 @@ resource "azurerm_virtual_machine" "devops" {
   name                = "virtual-machine"
   resource_group_name = azurerm_resource_group.devops.name
   location            = azurerm_resource_group.devops.location
-  vm_size             = "Standard_F2"
+  vm_size             = "Standard_DS1_v2"
   network_interface_ids = [
     azurerm_network_interface.devops.id,
   ]
