@@ -49,7 +49,7 @@ resource "azurerm_network_interface" "devops" {
 }
 
 
-resource "azurerm_linux_virtual_machine" "devops" {
+resource "azurerm_virtual_machine" "devops" {
   name                = "virtual-machine"
   resource_group_name = azurerm_resource_group.devops.name
   location            = azurerm_resource_group.devops.location
@@ -57,6 +57,18 @@ resource "azurerm_linux_virtual_machine" "devops" {
   network_interface_ids = [
     azurerm_network_interface.devops.id,
   ]
+  
+  storage_os_disk {
+    caching              = "ReadWrite"
+    storage_account_type = "Standard_LRS"
+  }
+  
+  storage_image_reference {
+    publisher = "Canonical"
+    offer     = "UbuntuServer"
+    sku       = "16.04-LTS"
+    version   = "latest"
+  }
   
  os_profile {
    computer_name  = "virtual-machine"
@@ -68,17 +80,6 @@ resource "azurerm_linux_virtual_machine" "devops" {
     disable_password_authentication = false
     }
   
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
-  }
 }
 
 
