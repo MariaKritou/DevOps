@@ -86,7 +86,7 @@ resource "azurerm_virtual_machine" "devops" {
 
 variable "admin_username" {
   type = string
-  default = "devOpslala"
+  default = "devOpsUser"
   }
 
 variable "admin_password" {
