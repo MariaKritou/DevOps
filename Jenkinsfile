@@ -100,8 +100,10 @@ pipeline {
                         
                         }
                     
-                    ansiblePlaybook installation: 'ansible',
-                    playbook: 'playbook.yml'
+                    {
+                        ansiblePlaybook installation: 'ansible',
+                        playbook: 'playbook.yml'
+                    }
                 }
                     // sh ‘terraform destroy -auto-approve’
             }
