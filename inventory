@@ -1,2 +1,2 @@
 [db-mysql]
-192.....vmIP ansible_user=ubuntu
+10.0.2.4 ansible_user=ubuntu
