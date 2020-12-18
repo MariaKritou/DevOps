@@ -1,0 +1,87 @@
+---
+- hosts: all
+  become: true
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - name: Install aptitude using apt
+      apt: name=aptitude state=latest update_cache=yes force_apt_get=yes
+
+    - name: Install required system packages
+      apt: name={{ item }} state=latest update_cache=yes
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python3-pip', 'virtualenv', 'python3-setuptools']
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt: update_cache=yes name=docker-ce state=latest
+
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+
+    - name: Pull default Docker image
+      docker_image:
+        name: "{{ default_container_image }}"
+        source: pull
+
+    # Creates the number of containers defined by the variable create_containers, using values from vars file
+    #- name: Create default containers
+      #docker_container:
+       # name: "{{ default_container_name }}{{ item }}"
+        #image: "{{ default_container_image }}"
+        #command: "{{ default_container_command }}"
+        #state: present
+      #with_sequence: count={{ create_containers }}
+
+      # Install mysql
+    - name: Create mysql container
+      docker_container:
+        name: "{{ default_image_name }}{{ item }}"
+        image: "{{ default_container_image }}"
+        state: present
+        #command: "{{ default_container_command }}"
+        #volumes:
+         #- "{{ docker_volume }}:/var/lib/mysql:rw"
+        #restart: true
+        #networks:
+        #- name: "{{ docker_network }}"
+        #alias:
+        #- "{{ db_name }}"
+        #env: 
+          #MYSQL_ROOT_PASSWORD: devops
+          #MYSQL_DATABASE: devops
+          #MYSQL_USER: devops
+          #MYSQL_PASSWORD: devops
+        ports:
+         - 8080:3306
+        detach: yes
+      
+      with_sequence: count={{ create_containers }}
+      
+  
+
+
+
+      #networks:
+      #- name: 
+      #   - "{{docker_network"}}"
+      #alias:
+       #- "{{db_name}}"
+
+      #- env:
+      #  MYSQL_ROOT_PASSWORD: devops
+       # MYSQL_DATABASE: devops
+       # MYSQL_USER: deveops
+       # MYSQL_PASSWORD: devops
+
+      
