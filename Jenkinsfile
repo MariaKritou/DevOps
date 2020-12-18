@@ -99,23 +99,26 @@ pipeline {
                         sh  'terraform apply -input=false -auto-approve'
                         
                         }
+                    
+                    ansiblePlaybook installation: 'ansible',
+                    playbook: 'playbook.yml'
                 }
                     // sh ‘terraform destroy -auto-approve’
             }
 
         }
 
-        stage('docker and mysql installation') {
-             steps {
-                 echo '> installing the application ...'
-                 ansiblePlaybook(
-                     inventory: 'inventory',
-                     cfg: 'ansible.cfg',
-                     default: 'vars/defaults.yml',
-                     playbook: 'playbook.yml'
-                )
-             }
-         }
+        //stage('docker and mysql installation') {
+             //steps {
+                 //echo '> installing the application ...'
+                 //ansiblePlaybook(
+                     //inventory: 'inventory',
+                     //cfg: 'ansible.cfg',
+                     //default: 'vars/defaults.yml',
+                     //playbook: 'playbook.yml'
+                //)
+             //}
+         //}
         
     }
 }
