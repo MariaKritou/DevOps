@@ -102,7 +102,7 @@ pipeline {
                     
                     
                         ansiblePlaybook installation: 'ansible',
-                        playbook: "playbook.yml  -e 'ansible_python_interpreter=/usr/bin/python3'"
+                        playbook: 'playbook.yml' + ' -e ansible_python_interpreter=/usr/bin/python3'
                     
                 }
                     // sh ‘terraform destroy -auto-approve’
