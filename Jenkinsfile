@@ -80,35 +80,40 @@ pipeline {
         } 
 
  
-stage('Set Terraform path') {
-    steps {
-      script {
-        def tfHome = tool name: 'Terraform'
-        env.PATH = "${tfHome}:${env.PATH}"
-       }
-       sh 'terraform version'
-
-      }
-    }
+        stage('Set Terraform path') {
+            steps {
+                script {
+                    def tfHome = tool name: 'Terraform'
+                    env.PATH = "${tfHome}:${env.PATH}"
+                }
+                sh 'terraform version'
+            }
+        }
     
-    stage('Provision infrastructure') {
-        steps {
-              withCredentials([azureServicePrincipal('1fba7590-0c5e-4cd4-a8a9-733e30590c66')]) {
-                  script{
-                    sh  'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
-                    sh  'terraform init'
-                    sh  'terraform apply -input=false -auto-approve'
-                      
-                    }
-              }
-                // sh ‘terraform destroy -auto-approve’
-          }
+        stage('Provision infrastructure') {
+            steps {
+                withCredentials([azureServicePrincipal('1fba7590-0c5e-4cd4-a8a9-733e30590c66')]) {
+                    script{
+                        sh  'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET -t $AZURE_TENANT_ID'
+                        sh  'terraform init'
+                        sh  'terraform apply -input=false -auto-approve'
+                        
+                        }
+                }
+                    // sh ‘terraform destroy -auto-approve’
+            }
 
         }
+
+        // stage('docker and mysql installation') {
+        //     steps {
+        //         echo '> installing the application ...'
+        //         ansiblePlaybook(
+        //             inventory: 'inventory',
+        //             playbook: 'playbook.yml'
+        //         )
+        //     }
+        // }
         
+    }
 }
-}
-
-
-//mjdjjfjg
-//djfgjprpfg

@@ -34,45 +34,26 @@
         name: "{{ default_container_image }}"
         source: pull
 
-    # Install mysql
+    # create mysql container
     - name: Create mysql container
       docker_container:
-        name: "{{ default_image_name }}{{ item }}"
+        name: "{{ default_container_name }}"
         image: "{{ default_container_image }}"
-        state: present
-        #command: "{{ default_container_command }}"
-        #volumes:
-         #- "{{ docker_volume }}:/var/lib/mysql:rw"
-        #restart: true
-        #networks:
-        #- name: "{{ docker_network }}"
-        #alias:
-        #- "{{ db_name }}"
-        #env: 
-          #MYSQL_ROOT_PASSWORD: devops
-          #MYSQL_DATABASE: devops
-          #MYSQL_USER: devops
-          #MYSQL_PASSWORD: devops
+        state: started
         ports:
-         - 8080:3306
+         - 9005:3306
         detach: yes
       
-      with_sequence: count={{ create_containers }}
-      
-  
+    # create a docker avi_network
+    - name: Create network
+      docker_network:
+        name: devops_data_network
 
 
-
-      #networks:
-      #- name: 
-      #   - "{{docker_network"}}"
-      #alias:
-       #- "{{db_name}}"
-
-      #- env:
-      #  MYSQL_ROOT_PASSWORD: devops
-       # MYSQL_DATABASE: devops
-       # MYSQL_USER: deveops
-       # MYSQL_PASSWORD: devops
-
+    # Add container to docker avi_network
+    - name: Add a container to docker network
+      docker_network:
+        name: devops_data_network
+        connected: "{{ default_container_name }}"
+        appends: yes
       

@@ -1,10 +1,5 @@
 ---
 create_containers: 1
-default_container_name: docker
-default_image_name: mysql
+default_container_name: devops_database
 default_container_image: mysql
 default_container_command: --default-authentication-plugin=msql_native_password
-
-docker_volume: db_data
-docker_network: ansible_net
-db_name: db
