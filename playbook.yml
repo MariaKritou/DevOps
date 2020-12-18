@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: local
   connection: local
   become: false
   vars_files:
