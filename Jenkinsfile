@@ -105,17 +105,17 @@ pipeline {
 
         }
 
-        // stage('docker and mysql installation') {
-        //     steps {
-        //         echo '> installing the application ...'
-        //         ansiblePlaybook(
-        //             inventory: 'inventory',
-        //             cfg: 'ansible.cfg',
-        //             default: 'vars/defaults.yml',
-        //             playbook: 'playbook.yml'
-        //         )
-        //     }
-        // }
+        stage('docker and mysql installation') {
+             steps {
+                 echo '> installing the application ...'
+                 ansiblePlaybook(
+                     inventory: 'inventory',
+                     cfg: 'ansible.cfg',
+                     default: 'vars/defaults.yml',
+                     playbook: 'playbook.yml'
+                )
+             }
+         }
         
     }
 }
