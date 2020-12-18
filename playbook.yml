@@ -1,5 +1,6 @@
 ---
 - hosts: db-mysql
+  connection: local
   become: true
   vars_files:
     - vars/default.yml
