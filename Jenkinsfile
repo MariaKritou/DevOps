@@ -100,7 +100,6 @@ pipeline {
                         
                         }
                     
-                    
                         ansiblePlaybook installation: 'ansible',
                         playbook: 'playbook.yml' 
                     
