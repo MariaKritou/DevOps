@@ -1,8 +1,9 @@
 ---
 - hosts: db-host
   connection: local
-  gather_facts: true
   become: yes
+  become_method: sudo
+  gather_facts: true
   vars_files:
     - vars/default.yml
 
