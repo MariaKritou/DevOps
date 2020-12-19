@@ -1,2 +1,2 @@
 [db-host]
-10.0.2.[0:24] ansible_user=ubuntu 
+10.0.2.4 ansible_ssh_pass=ubuntu ansible_ssh_user=ubuntu
