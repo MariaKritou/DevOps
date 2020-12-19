@@ -101,7 +101,7 @@ pipeline {
                         }
                     
                         ansiblePlaybook installation: 'ansible',
-                        sudo 'ansible-playbook playbook.yml -i inventory -- user jenkins --key-file ~/.ssh/id_rsa'
+                        //sudo 'ansible-playbook playbook.yml -i inventory -- user jenkins --key-file ~/.ssh/id_rsa'
                         playbook: 'playbook.yml' 
                     
                 }
