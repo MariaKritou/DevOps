@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 [db-host]
 10.0.2.[0:24] ansible_user=ubuntu 
-=======
-[local]
-localhost ansible_user=ubuntu 
->>>>>>> 6d9d7596007e2ecd1fc3deb18093fa3e2b5989db
