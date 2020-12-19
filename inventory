@@ -1,2 +1,2 @@
 [db-host]
-10.0.2.4 ansible_user=devOpsUser ansible_pass=G0odh890iohASWE ansible_become=yes 
+10.0.2.4 ansible_user=devOpsUser
