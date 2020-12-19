@@ -80,10 +80,10 @@ resource "azurerm_virtual_machine" "devops" {
   
   os_profile_linux_config {
     disable_password_authentication = false
-    ssh_keys {
-      path = "/home/centos/.ssh/authorized_keys"
-      key_data = file("~/.ssh/id_rsa.pub") 
-       }
+    #ssh_keys {
+      #path = "/home/centos/.ssh/authorized_keys"
+      #key_data = file("~/.ssh/id_rsa.pub") 
+       #}
     }
   
   }
