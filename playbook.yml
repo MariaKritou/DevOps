@@ -1,6 +1,6 @@
 ---
 - hosts: db-host
-  #connection: local
+  connection: local
   gather_facts: true
   become: true
   vars_files:
