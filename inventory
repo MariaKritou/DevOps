@@ -1,2 +1,2 @@
 [db-host]
-10.0.2.4 ansible_user=ubuntu
+10.0.2.4 ansible_user=devOpsUser ansible_sudo_pass=G0odh890iohASWE
