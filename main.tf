@@ -98,3 +98,4 @@ variable "admin_password" {
   default = "G0odh890iohASWE"
   }
 
+}
