@@ -101,7 +101,8 @@ pipeline {
                         }
                     
                         ansiblePlaybook installation: 'ansible',
-                        playbook: 'playbook.yml' 
+                        sh "ansible-playbook playbook.yml -i inventory -- user jenkins --key-file ~/.ssh/id_rsa"
+                        //playbook: 'playbook.yml' 
                     
                 }
                     // sh ‘terraform destroy -auto-approve’
