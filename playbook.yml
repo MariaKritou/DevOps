@@ -1,7 +1,8 @@
 ---
-- hosts: local
-  connection: local
-  become: false
+- hosts: db-host
+  #connection: local
+  gether_facts: true
+  become: true
   vars_files:
     - vars/default.yml
 
@@ -43,6 +44,11 @@
         state: started
         ports:
          - 9005:3306
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: root
+          MYSQL_USER: root
+          MYSQL_PASSWORD: root
         detach: yes
       
     # create a docker avi_network
