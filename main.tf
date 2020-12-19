@@ -82,7 +82,7 @@ resource "azurerm_virtual_machine" "devops" {
     disable_password_authentication = false
     ssh_keys {
       path = "/home/centos/.ssh/authorized_keys"
-      key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnqOz6mp0AgNYpR1SMSOBHGYoFBrZXtN6HIDkd/uwwRv2mlL6qfq+NpkdogzZJn9I4V+J/8+XSXejO9zO2KgZ6L0QmqkkXj/J2pEV6Het2afkrXacrJafWOPY79qbQEkuXCV02hEqMUDNDqMwRzex6gMyCm+IYn/JcTFF1FQsWKQ76LhE0XJOC1X67PvRdE8JoGnGWNHJdP40/PsuFS/jlBAbzusbK3ay/qMTSs5/wEaY5YgLeaFMuApfZ011J2ad4XGKM8N2o7mT52POPXYAkOCLPo0GlOZJFbI8087jBRWosM0beyTytN4atKNkJkkJ5Y/sMpTefuQl0tCAWzSTX"
+      key_data = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnqOz6mp0AgNYpR1SMSOBHGYoFBrZXtN6HIDkduwwRv2mlL6qfq+NpkdogzZJn9I4V+J/8+XSXejO9zO2KgZ6L0QmqkkXjJ2pEV6Het2afkrXacrJafWOPY79qbQEkuXCV02hEqMUDNDqMwRzex6gMyCm+IYnJcTFF1FQsWKQ76LhE0XJOC1X67PvRdE8JoGnGWNHJdP40PsuFSjlBAbzusbK3ayqMTSs5wEaY5YgLeaFMuApfZ011J2ad4XGKM8N2o7mT52POPXYAkOCLPo0GlOZJFbI8087jBRWosM0beyTytN4atKNkJkkJ5Y/sMpTefuQl0tCAWzSTX"
       }
     }
   
