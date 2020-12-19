@@ -75,16 +75,16 @@ resource "azurerm_virtual_machine" "devops" {
  os_profile {
    computer_name  = "virtual-machine"
    admin_username = var.admin_username
-   #admin_password = var.admin_password
+   admin_password = var.admin_password
    }
   
   os_profile_linux_config {
     disable_password_authentication = true
-    ssh_keys {
-      path = "/home/david/.ssh/authorized_keys"
-      key_data = "ssh rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAxB8QgfggxjKJfvxGN9+n4xq4R0u44P1e8ul2ulq6PhrkZCypQmK0lmumPYq5teK46TMbi6esAJjGzKWey2+CMs2s/2o756b5lvt9FzyE3EJyep8Tx9akhqNtjDnyYZLE8YFo0GZIMfGa2XfXrNURkLbeKPv+VpUNdBIp0is2x$"
-      }
-    }
+    //ssh_keys {
+      //path = "/home/david/.ssh/authorized_keys"
+      //key_data = "ssh rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQAxB8QgfggxjKJfvxGN9+n4xq4R0u44P1e8ul2ulq6PhrkZCypQmK0lmumPYq5teK46TMbi6esAJjGzKWey2+CMs2s/2o756b5lvt9FzyE3EJyep8Tx9akhqNtjDnyYZLE8YFo0GZIMfGa2XfXrNURkLbeKPv+VpUNdBIp0is2x$"
+      //}
+    //}
   
 }
 

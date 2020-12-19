@@ -2,7 +2,7 @@
 - hosts: db-host
   #connection: local
   become: yes
-  #become_method: sudo
+  become_method: sudo
   gather_facts: true
   vars_files:
     - vars/default.yml
