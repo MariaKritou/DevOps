@@ -74,12 +74,16 @@ resource "azurerm_virtual_machine" "devops" {
   
  os_profile {
    computer_name  = "virtual-machine"
-   admin_username = var.admin_username
-   admin_password = var.admin_password
+   #admin_username = var.admin_username
+   #admin_password = var.admin_password
    }
   
   os_profile_linux_config {
-    disable_password_authentication = false
+    disable_password_authentication = true
+    ssh_keys {
+      path = /home/{david}/.ssh/authorized_keys
+      key_data = file("~/.ssh/id_rsa.pub")
+      }
     }
   
 }
