@@ -2,7 +2,7 @@
 - hosts: db-host
   connection: local
   gather_facts: true
-  become: true
+  become: yes
   vars_files:
     - vars/default.yml
 
